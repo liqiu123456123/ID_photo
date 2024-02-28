@@ -1,0 +1,6 @@
+numpy==1.26.4
+opencv_python==4.9.0.80
+PyQt5==5.15.10
+PyQt5_sip==12.13.0
+pywin32==306
+scipy==1.12.0
