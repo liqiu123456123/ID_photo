@@ -262,29 +262,24 @@ class MyWindow(QMainWindow):
         self.btn_undo.setFont(font)
 
         # 格式设置
-        self.central_widget.setStyleSheet("background: rgb(252, 255, 255)")
-        self.title.setStyleSheet("background: rgb(60, 60, 60)")
-        self.btn_open.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
-        self.btn_save.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
-        self.btn_undo.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
-        self.btn_confirm.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                       "color: rgb(255, 255, 255)")
-        self.btn_cancel.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                      "color: rgb(255, 255, 255)")
-        self.action_back_frame.setStyleSheet("background: rgb(80, 80, 80)")
-        self.btn_clip.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
-        self.btn_correction.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                          "color: rgb(255, 255, 255)")
-        self.btn_flip.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
-        self.btn_base_color.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                          "color: rgb(255, 255, 255)")
-        self.btn_size.setStyleSheet("background: rgba(0, 0, 0, 0);\n"
-                                    "color: rgb(255, 255, 255)")
+        # 定义公共的样式字符串
+        transparent_button_style = "background: rgba(0, 0, 0, 0); color: rgb(255, 255, 255);"
+        gray_button_style = "background: rgb(80, 80, 80); color: rgb(255, 255, 255);"
+
+        # 设置中央窗口的样式
+        self.central_widget.setStyleSheet("background: rgb(252, 255, 255);")
+
+        # 设置标题的样式
+        self.title.setStyleSheet("background: rgb(60, 60, 60);")
+
+        # 设置按钮的样式（重用透明按钮样式）
+        buttons = [self.btn_open, self.btn_save, self.btn_undo, self.btn_confirm, self.btn_cancel,
+                   self.btn_clip, self.btn_correction, self.btn_flip, self.btn_base_color, self.btn_size]
+        for btn in buttons:
+            btn.setStyleSheet(transparent_button_style)
+
+            # 设置特定按钮的样式（如果它们有不同于其他按钮的样式）
+        self.action_back_frame.setStyleSheet(gray_button_style)
 
     def open_img(self):
         """
