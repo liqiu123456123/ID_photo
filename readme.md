@@ -27,9 +27,9 @@
 ## 关于本项目
 
 
-![img.png](img.png)
+![readme_img.png](readme_img.png)
 
-![img_1.png](img_1.png)
+![readme_img_1.png](readme_img_1.png)
 
 
 这是一个使用OpenCV和PyQt开发的处理证件照的工具，可以把图片导入操作界面中，实现了常用的裁剪、矫正、翻转、换底、尺寸变换等功能。
