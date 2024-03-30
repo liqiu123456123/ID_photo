@@ -5,8 +5,9 @@ import numpy as np
 import math
 from image_label import ImageLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QImage, QPixmap, QIcon
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow, QMenu, QAction
+from PyQt5.QtGui import QImage, QPixmap, QIcon, QFont
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow, QMenu, QAction, QWidget, QHBoxLayout, \
+    QLabel
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.Qt import QToolButton
 from scipy import ndimage
@@ -39,6 +40,10 @@ class MyWindow(QMainWindow):
     def setupUi(self):
 
         self.resize(926, 806)
+        self.setWindowTitle("证件照处理工具")
+        icon = QIcon('icon.ico')
+        # 设置窗口图标
+        self.setWindowIcon(icon)
         # self.central_widget:主窗口
         self.central_widget = QtWidgets.QWidget(self)
         self.central_widget_layout = QtWidgets.QVBoxLayout()
@@ -163,49 +168,77 @@ class MyWindow(QMainWindow):
         self.img_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.img_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         # self.img_frame布局
-        self.img_frame_layout = QtWidgets.QHBoxLayout()
+        self.img_frame_layout = QtWidgets.QVBoxLayout()
         self.img_frame_layout.setContentsMargins(0, 0, 0, 0)
         self.img_frame_layout.setSpacing(0)
         self.img_frame.setLayout(self.img_frame_layout)
+        self.sw_info = QWidget()
+        # 创建水平布局
+        layout = QHBoxLayout()
+        # 创建标签并添加到布局中
+        github_label = QLabel('GitHub账号: liqiu123456123')
+        version_label = QLabel('软件版本: v1.0.0')
+        contact_label = QLabel('联系方式: liqiu6746')
+
+        # 设置标签的字体样式
+        font = QFont()
+        font.setBold(True)  # 加粗
+        font.setPointSize(12)  # 设置字号为12
+
+        # 设置标签的字体
+        github_label.setFont(font)
+        version_label.setFont(font)
+        contact_label.setFont(font)
+        # 将标签添加到水平布局中
+        layout.addWidget(github_label)
+        layout.addWidget(version_label)
+        layout.addWidget(contact_label)
+        # 设置窗口的主布局
+        self.sw_info.setLayout(layout)
+
         self.img_display = ImageLabel(self.img_frame)
         self.img_frame_layout.addWidget(self.img_display)
+        self.img_frame_layout.addWidget(self.sw_info)
+        self.img_frame_layout.setStretchFactor(self.img_display, 4)
+        self.img_frame_layout.setStretchFactor(self.sw_info, 1)
+
         self.action_img_layout.addWidget(self.img_frame)
         self.central_widget_layout.addLayout(self.action_img_layout)
         self.setCentralWidget(self.central_widget)
         self.control.hide()
         # 按钮显示文字
         self.btn_open.setText("打开")
-        self.btn_open.setIcon(QIcon("./icon/open.png"))
+        self.btn_open.setIcon(QIcon("C:/ID_photo-main/icon/open.png"))
         self.btn_open.setIconSize(QSize(36, 36))
         self.btn_open.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
         self.btn_save.setText("保存")
-        self.btn_save.setIcon(QIcon("./icon/save.png"))
+        self.btn_save.setIcon(QIcon("C:/ID_photo-main/icon/save.png"))
         self.btn_save.setIconSize(QSize(36, 36))
         self.btn_save.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
         self.btn_undo.setText("恢复")
-        self.btn_undo.setIcon(QIcon("./icon/undo.png"))
+        self.btn_undo.setIcon(QIcon("C:/ID_photo-main/icon/undo.png"))
         self.btn_undo.setIconSize(QSize(36, 36))
         self.btn_undo.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
         self.btn_confirm.setText("确定")
         self.btn_cancel.setText("取消")
         self.btn_clip.setText("裁剪")
-        self.btn_clip.setIcon(QIcon("./icon/clip.png"))
+        self.btn_clip.setIcon(QIcon("C:/ID_photo-main/icon/clip.png"))
         self.btn_clip.setIconSize(QSize(36, 36))
         self.btn_clip.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.btn_correction.setText("矫正")
-        self.btn_correction.setIcon(QIcon("./icon/correction.png"))
+        self.btn_correction.setIcon(QIcon("C:/ID_photo-main/icon/correction.png"))
         self.btn_correction.setIconSize(QSize(36, 36))
         self.btn_correction.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.btn_flip.setText("翻转")
-        self.btn_flip.setIcon(QIcon("./icon/flip.png"))
+        self.btn_flip.setIcon(QIcon("C:/ID_photo-main/icon/flip.png"))
         self.btn_flip.setIconSize(QSize(36, 36))
         self.btn_flip.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.btn_base_color.setText("换底")
-        self.btn_base_color.setIcon(QIcon("./icon/base_color.png"))
+        self.btn_base_color.setIcon(QIcon("C:/ID_photo-main/icon/base_color.png"))
         self.btn_base_color.setIconSize(QSize(36, 36))
         self.btn_base_color.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.btn_size.setText("尺寸")
-        self.btn_size.setIcon(QIcon("./icon/size.png"))
+        self.btn_size.setIcon(QIcon("C:/ID_photo-main/icon/size.png"))
         self.btn_size.setIconSize(QSize(36, 36))
         self.btn_size.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
 
