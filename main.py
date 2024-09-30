@@ -207,92 +207,104 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         self.control.hide()
         # 按钮显示文字
-        self.btn_open.setText("打开")
-        self.btn_open.setIcon(QIcon("icon/open.png"))
-        self.btn_open.setIconSize(QSize(36, 36))
-        self.btn_open.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.btn_save.setText("保存")
-        self.btn_save.setIcon(QIcon("icon/save.png"))
-        self.btn_save.setIconSize(QSize(36, 36))
-        self.btn_save.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.btn_undo.setText("恢复")
-        self.btn_undo.setIcon(QIcon("icon/undo.png"))
-        self.btn_undo.setIconSize(QSize(36, 36))
-        self.btn_undo.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
-        self.btn_confirm.setText("确定")
-        self.btn_cancel.setText("取消")
-        self.btn_clip.setText("裁剪")
-        self.btn_clip.setIcon(QIcon("icon/clip.png"))
-        self.btn_clip.setIconSize(QSize(36, 36))
-        self.btn_clip.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
-        self.btn_correction.setText("矫正")
-        self.btn_correction.setIcon(QIcon("icon/correction.png"))
-        self.btn_correction.setIconSize(QSize(36, 36))
-        self.btn_correction.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
-        self.btn_flip.setText("翻转")
-        self.btn_flip.setIcon(QIcon("icon/flip.png"))
-        self.btn_flip.setIconSize(QSize(36, 36))
-        self.btn_flip.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
-        self.btn_base_color.setText("换底")
-        self.btn_base_color.setIcon(QIcon("icon/base_color.png"))
-        self.btn_base_color.setIconSize(QSize(36, 36))
-        self.btn_base_color.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
-        self.btn_size.setText("尺寸")
-        self.btn_size.setIcon(QIcon("icon/size.png"))
-        self.btn_size.setIconSize(QSize(36, 36))
-        self.btn_size.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+        # 按钮的属性配置
+        button_config = [
+            {"button": self.btn_open, "text": "打开", "icon": "icon/open.png", "style": Qt.ToolButtonTextBesideIcon,
+             "event": self.open_img},
+            {"button": self.btn_save, "text": "保存", "icon": "icon/save.png", "style": Qt.ToolButtonTextBesideIcon,
+             "event": self.save_img},
+            {"button": self.btn_undo, "text": "恢复", "icon": "icon/undo.png", "style": Qt.ToolButtonTextBesideIcon,
+             "event": self.undo_img},
+            {"button": self.btn_confirm, "text": "确定", "event": self.confirm_img},
+            {"button": self.btn_cancel, "text": "取消", "event": self.cancel_img},
+            {"button": self.btn_clip, "text": "裁剪", "icon": "icon/clip.png", "style": Qt.ToolButtonTextUnderIcon,
+             "event": self.clip_img},
+            {"button": self.btn_correction, "text": "矫正", "icon": "icon/correction.png",
+             "style": Qt.ToolButtonTextUnderIcon, "event": self.correction_img},
+            {"button": self.btn_flip, "text": "翻转", "icon": "icon/flip.png", "style": Qt.ToolButtonTextUnderIcon},
+            {"button": self.btn_base_color, "text": "换底", "icon": "icon/base_color.png",
+             "style": Qt.ToolButtonTextUnderIcon},
+            {"button": self.btn_size, "text": "尺寸", "icon": "icon/size.png", "style": Qt.ToolButtonTextUnderIcon}
+        ]
 
-        # 按钮绑定事件
-        self.btn_open.clicked.connect(self.open_img)
-        self.btn_save.clicked.connect(self.save_img)
-        self.btn_undo.clicked.connect(self.undo_img)
-        self.btn_confirm.clicked.connect(self.confirm_img)
-        self.btn_cancel.clicked.connect(self.cancel_img)
-        self.btn_clip.clicked.connect(self.clip_img)
-        self.btn_correction.clicked.connect(self.correction_img)
+        # 统一设置按钮的属性和事件
+        for config in button_config:
+            button = config["button"]
+            button.setText(config["text"])
+
+            # 如果有icon，则设置icon
+            if "icon" in config:
+                button.setIcon(QIcon(config["icon"]))
+                button.setIconSize(QSize(36, 36))
+
+            # 如果有样式，则设置样式
+            if "style" in config:
+                button.setToolButtonStyle(config["style"])
+
+            # 如果有绑定的事件，则连接事件
+            if "event" in config:
+                button.clicked.connect(config["event"])
 
         # 对象名
-        self.setObjectName("MainWindow")
-        self.central_widget.setObjectName("central_widget")
-        self.central_widget_layout.setObjectName("central_widget_layout")
-        self.title_layout.setObjectName("title_layout")
-        self.title.setObjectName("title")
-        self.operation.setObjectName("operation")
-        self.title_button_layout.setObjectName("title_button_layout")
-        self.btn_open.setObjectName("btn_open")
-        self.btn_save.setObjectName("btn_save")
-        self.btn_undo.setObjectName("btn_undo")
-        self.control.setObjectName("control")
-        self.control_layout.setObjectName("control_layout")
-        self.btn_confirm.setObjectName("btn_confirm")
-        self.btn_cancel.setObjectName("btn_cancel")
-        self.action_img_layout.setObjectName("action_img_layout")
-        self.action_back_frame.setObjectName("action_back_frame")
-        self.action_options_frame.setObjectName("action_options_frame")
-        self.action_layout.setObjectName("action_layout")
-        self.btn_clip.setObjectName("btn_clip")
-        self.btn_correction.setObjectName("btn_correction")
-        self.btn_flip.setObjectName("btn_flip")
-        self.btn_base_color.setObjectName("btn_base_color")
-        self.btn_size.setObjectName("btn_size")
-        self.img_frame.setObjectName("img_frame")
-        self.img_frame_layout.setObjectName("img_frame_layout")
-        self.img_display.setObjectName("img_display")
+        # 创建一个包含所有控件及其对应名称的列表或字典
+        object_names = {
+            self: "MainWindow",
+            self.central_widget: "central_widget",
+            self.central_widget_layout: "central_widget_layout",
+            self.title_layout: "title_layout",
+            self.title: "title",
+            self.operation: "operation",
+            self.title_button_layout: "title_button_layout",
+            self.btn_open: "btn_open",
+            self.btn_save: "btn_save",
+            self.btn_undo: "btn_undo",
+            self.control: "control",
+            self.control_layout: "control_layout",
+            self.btn_confirm: "btn_confirm",
+            self.btn_cancel: "btn_cancel",
+            self.action_img_layout: "action_img_layout",
+            self.action_back_frame: "action_back_frame",
+            self.action_options_frame: "action_options_frame",
+            self.action_layout: "action_layout",
+            self.btn_clip: "btn_clip",
+            self.btn_correction: "btn_correction",
+            self.btn_flip: "btn_flip",
+            self.btn_base_color: "btn_base_color",
+            self.btn_size: "btn_size",
+            self.img_frame: "img_frame",
+            self.img_frame_layout: "img_frame_layout",
+            self.img_display: "img_display"
+        }
+
+        # 遍历字典，设置 ObjectName
+        for widget, name in object_names.items():
+            widget.setObjectName(name)
 
         # 字体统一定义
+        # 创建字体对象
         font = QtGui.QFont()
         font.setPointSize(8)
+
+        # 设置窗口字体
         self.setFont(font)
-        self.btn_open.setFont(font)
-        self.btn_save.setFont(font)
-        self.btn_base_color.setFont(font)
-        self.btn_size.setFont(font)
-        self.btn_flip.setFont(font)
-        self.btn_correction.setFont(font)
-        self.btn_clip.setFont(font)
-        self.btn_cancel.setFont(font)
-        self.btn_confirm.setFont(font)
-        self.btn_undo.setFont(font)
+
+        # 将所有按钮存储在一个列表中
+        buttons = [
+            self.btn_open,
+            self.btn_save,
+            self.btn_base_color,
+            self.btn_size,
+            self.btn_flip,
+            self.btn_correction,
+            self.btn_clip,
+            self.btn_cancel,
+            self.btn_confirm,
+            self.btn_undo
+        ]
+
+        # 遍历所有按钮并设置字体
+        for button in buttons:
+            button.setFont(font)
 
         # 格式设置
         # 定义公共的样式字符串
