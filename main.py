@@ -547,7 +547,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=1)
-        dilate = cv2.dilate(erode, None, iterations=1)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色
@@ -573,7 +572,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=1)
-        dilate = cv2.dilate(erode, None, iterations=1)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色
@@ -599,7 +597,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=2)
-        dilate = cv2.dilate(erode, None, iterations=2)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色
@@ -625,7 +622,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=2)
-        dilate = cv2.dilate(erode, None, iterations=2)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色
@@ -651,7 +647,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=2)
-        dilate = cv2.dilate(erode, None, iterations=2)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色
@@ -677,7 +672,6 @@ class MyWindow(QMainWindow):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         # 腐蚀膨胀
         erode = cv2.erode(mask, None, iterations=2)
-        dilate = cv2.dilate(erode, None, iterations=2)
         for i in range(rows):
             for j in range(cols):
                 if erode[i, j] == 255:  # 像素点为255表示的是白色，我们就是要将白色处的像素点，替换为红色

@@ -1,13 +1,14 @@
-from PyQt5 import  QtWidgets
+
+from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtCore import QRect, Qt
+
 
 class ImageLabel(QLabel):
     """"
     用于显示图片的 Label
     """
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.x0 = 0
